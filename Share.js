@@ -6,17 +6,15 @@ const uuid = require('./GetUUID.js');
 var postData= {data:JSON.parse(JsonData.empty)}
 
 // POST
-var url = 'https://streams.flamapp.com/flamV2-dev-clickstream'
-var testurl = 'https://jsonplaceholder.typicode.com/posts'
-
+var sendShareEvent = function(event_url, user_id, guest_user_profile_id, log_time){
 postData.data.log_id = uuid.create_UUID();
 postData.data.device_id = uuid.create_UUID();
 postData.data.country = "IN";
 postData.data.ip = "168.212.226.204";
-postData.data.log_time = "2022-09-01 19:30:25.000012";
+postData.data.log_time = log_time;
 postData.data.user_details.avatar_url = "www.youtube.com";
-postData.data.user_profile_id = "b7a66a11-6ea2-4df1-a2c8-8f23ad5d4902";
-postData.data.user_details.guest_user_profile_id = "9940c74-ed38-4305-861b-e1ebfa783a6e";
+postData.data.user_profile_id = user_id;
+postData.data.user_details.guest_user_profile_id = guest_user_profile_id;
 postData.data.user_details.is_guest = "false";
 postData.data.device_details.device_type = "One Plus 9";
 postData.data.device_details.os = "android";
@@ -43,10 +41,13 @@ postData.data.data.experience.is_creation = "false";
 postData.data.data.experience.experience_id = "ksdjh789-9ik8-4df1-8uj7-8f23ad5d4902";
 postData.data.data.experience.creator_info = "op9ik789-4r3e-90ok-6tg5-8f23ad5d4902";
 postData.data.app_version = "0.1.1";
-axios.post(testurl, postData).then(function (response) {
+axios.post(event_url, postData).then(function (response) {
     //console.log("1 req");
     console.log(postData);
 })
 .catch(function (error) {
     console.log(error.data);
 })
+}
+
+module.exports = {sendShareEvent}

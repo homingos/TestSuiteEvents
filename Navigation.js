@@ -6,14 +6,13 @@ const uuid = require('./GetUUID.js');
 var postData= {data:JSON.parse(JsonData.empty)}
 
 // POST
-var url = 'https://streams.flamapp.com/flamV2-dev-clickstream'
-var testurl = 'https://jsonplaceholder.typicode.com/posts'
 
+var sendNavigationEvent = function(event_url, user_id, guest_user_profile_id, log_time){
 postData.data.log_id = uuid.create_UUID();
 postData.data.device_id = uuid.create_UUID();
 postData.data.country = "IN";
 postData.data.ip = "168.212.226.204";
-postData.data.log_time = "2023-09-18 19:41:55.000023";
+postData.data.log_time = log_time;
 postData.data.user_details.avatar_url = "";
 postData.data.user_profile_id = "b7a66a11-6ea2-4df1-a2c8-8f23ad5d4902";
 postData.data.user_details.guest_user_profile_id = "9940c74-ed38-4305-861b-e1ebfa783a6e";
@@ -40,7 +39,7 @@ axios.post(url, postData).then(function (response) {
     console.log("1 req");
     console.log(postData);
     postData.data.log_id = uuid.create_UUID();
-    postData.data.log_time = "2023-09-18 19:42:05.000023";
+    postData.data.log_time = "2022-09-18 19:42:05.000023";
     postData.data.ssid = uuid.create_UUID();
     postData.data.event_name = "Notification";
     axios.post(url, postData).then(()=>{
@@ -54,14 +53,14 @@ axios.post(url, postData).then(function (response) {
             console.log(postData);
             postData.data.meta_data = "true";
             postData.data.log_id = uuid.create_UUID();
-            postData.data.log_time = "2023-09-18 19:42:15.004567";
+            postData.data.log_time = "2022-09-18 19:42:15.004567";
             postData.data.ssid = uuid.create_UUID();
             postData.data.event_name = "Explore";
             axios.post(url, postData).then(()=>{
                 console.log("4 req");
                 console.log(postData);
                 postData.data.log_id = uuid.create_UUID();
-                postData.data.log_time = "2023-09-18 19:42:25.004567";
+                postData.data.log_time = "2022-09-18 19:42:25.004567";
                 postData.data.ssid = uuid.create_UUID();
                 postData.data.event_name = "Profile";
                 axios.post(url, postData).then(()=>{
@@ -75,3 +74,6 @@ axios.post(url, postData).then(function (response) {
 .catch(function (error) {
     console.log(error.data);
 })
+}
+
+module.exports = {sendNavigationEvent}

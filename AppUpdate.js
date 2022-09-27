@@ -1,16 +1,15 @@
 const axios = require('axios');
 const JsonData = require("./DummyData");
 const uuid = require('./GetUUID.js');
-/
 
-var sendAppUpdateEvent = function(event_url, user_id, guest_user_profile_id){
+var sendAppUpdateEvent = function(event_url, user_id, guest_user_profile_id, log_time){
     var postData= {data:JSON.parse(JsonData.empty)}
-    // POST
+    //POST
     postData.data.log_id = uuid.create_UUID();
     postData.data.device_id = uuid.create_UUID();
     postData.data.user_profile_id = user_id;
     postData.data.country = "IN";
-    postData.data.log_time = "2023-09-18 17:35:25.004567";
+    postData.data.log_time = log_time;
     postData.data.ip = "168.212.226.204";
     postData.data.device_details.device_type = "One Plus 9";
     postData.data.device_details.os = "android";
@@ -36,7 +35,7 @@ var sendAppUpdateEvent = function(event_url, user_id, guest_user_profile_id){
         console.log(postData);
         postData.data.log_id = uuid.create_UUID();
         postData.data.ssid = uuid.create_UUID();
-        postData.data.log_time = "2023-09-18 17:35:45.004567";
+        postData.data.log_time = "2022-09-18 17:35:45.004567";
         postData.data.adjust_event_id = "appforce";
         postData.data.event_id = "appupdate";
         postData.data.event_name = "Prompt Force Update";
@@ -46,7 +45,7 @@ var sendAppUpdateEvent = function(event_url, user_id, guest_user_profile_id){
             postData.data.meta_data = "true";
             postData.data.log_id = uuid.create_UUID();
             postData.data.ssid = uuid.create_UUID();
-            postData.data.log_time = "2023-09-18 17:35:55.004567";
+            postData.data.log_time = "2022-09-18 17:35:55.004567";
             postData.data.adjust_event_id = "appupnow";
             postData.data.event_id = "appupdate";
             postData.data.event_type = "CTA";
@@ -56,7 +55,7 @@ var sendAppUpdateEvent = function(event_url, user_id, guest_user_profile_id){
                 console.log(postData);
                 postData.data.log_id = uuid.create_UUID();
                 postData.data.ssid = uuid.create_UUID();
-                postData.data.log_time = "2023-09-18 17:36:05.004567";
+                postData.data.log_time = "2022-09-18 17:36:05.004567";
                 postData.data.adjust_event_id = "appdecup";
                 postData.data.event_id = "appupdate";
                 postData.data.event_name = "Declined Update";

@@ -13,34 +13,25 @@ var getUsers = function(url, token){
     ]
 }
 
-var getMoves = function(){
-    return [
+var getMoves = [
         {uid: 1},
         {uid: 2}
     ]
-}
 
-var getScenes = function(){
-    return [
+var getScenes = [
         {uid: 1},
         {uid: 2}
     ]
-}
 
-
-var getMusic = function(){
-    return [
+var getMusic = [
         {uid: 1},
         {uid: 2}
     ]
-}
 
 
-var getExperiences = function(){
-    return [
+var getExperiences = [
         {uid: 1},
         {uid: 2}
     ]
-}
 
 module.exports = {getExperiences, getUsers, getMoves, getScenes, getMusic}

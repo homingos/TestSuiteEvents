@@ -17,7 +17,7 @@ let users = apiController.getUsers(getUsersUrl, umsToken);
 let experiences = apiController.getExperiences(getExperiencesUrl, experiencesToken);
 let moves = apiController.getMoves(getMovesUrl, experiencesToken);
 let music = apiController.getMusic(getMusicUrl, experiencesToken);
-let scenes = apiController.getScenes(getScenesUrl, experiencesToken);
+let scenes = apiController.getScenes(getScenesUrl, experiencesToken); 
 
 console.log(users, experiences, moves, music, scenes);
 
@@ -27,17 +27,19 @@ function get_correct_url(){
 
 sendAppUpdateEvent();
 
-sendOnBoardingEvent();
+//sendOnBoardingEvent();
 
 function sendOnBoardingEvent(){
-    
+    url = get_correct_url();
+    let user = users[Math.floor(Math.random()*users.length)];
+    appUpdate.sendAppUpdateEvent(url, user.user_profile_id, user.user_guest_profile_id, "2022-09-18 18:00:00.000012");
 }
 
 
 function sendAppUpdateEvent(){
     url = get_correct_url();
     let user = users[Math.floor(Math.random()*users.length)];
-    appUpdate.sendAppUpdateEvent(url, user.user_profile_id, user.user_guest_profile_id);
+    appUpdate.sendAppUpdateEvent(url, user.user_profile_id, user.user_guest_profile_id, "2022-09-18 18:00:00.000012");
 }
 
 function sendNudgeEvent(){
