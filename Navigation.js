@@ -1,24 +1,16 @@
 const axios = require('axios');
 const JsonData = require("./DummyData");
-const uuid = require('uuid');
+const uuid = require('./GetUUID.js');
+
 //uuid()
 var postData= {data:JSON.parse(JsonData.empty)}
 
 // POST
 var url = 'https://streams.flamapp.com/flamV2-dev-clickstream'
 var testurl = 'https://jsonplaceholder.typicode.com/posts'
-function create_UUID(){
-  var dt = new Date().getTime();
-  var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-      var r = (dt + Math.random()*16)%16 | 0;
-      dt = Math.floor(dt/16);
-      return (c=='x' ? r :(r&0x3|0x8)).toString(16);
-  });
-  return uuid;
-}
 
-postData.data.log_id = create_UUID();
-postData.data.device_id = create_UUID();
+postData.data.log_id = uuid.create_UUID();
+postData.data.device_id = uuid.create_UUID();
 postData.data.country = "IN";
 postData.data.ip = "168.212.226.204";
 postData.data.log_time = "2023-09-18 19:41:55.000023";
@@ -30,9 +22,9 @@ postData.data.device_details.device_type = "One Plus 9";
 postData.data.device_details.os = "android";
 postData.data.device_details.platform = "Android";
 postData.data.ui_variant = "1";
-postData.data.psid = create_UUID();
-postData.data.csid = create_UUID();
-postData.data.ssid = create_UUID();
+postData.data.psid = uuid.create_UUID();
+postData.data.csid = uuid.create_UUID();
+postData.data.ssid = uuid.create_UUID();
 postData.data.meta_data = "false";
 postData.data.adjust_event_id = "";
 postData.data.data.experience.is_creation = "false";
@@ -47,30 +39,30 @@ postData.data.app_version = "0.1.1";
 axios.post(url, postData).then(function (response) {
     console.log("1 req");
     console.log(postData);
-    postData.data.log_id = create_UUID();
+    postData.data.log_id = uuid.create_UUID();
     postData.data.log_time = "2023-09-18 19:42:05.000023";
-    postData.data.ssid = create_UUID();
+    postData.data.ssid = uuid.create_UUID();
     postData.data.event_name = "Notification";
     axios.post(url, postData).then(()=>{
         console.log("2 req");
         console.log(postData);
-        postData.data.log_id = create_UUID();
-        postData.data.ssid = create_UUID();
+        postData.data.log_id = uuid.create_UUID();
+        postData.data.ssid = uuid.create_UUID();
         postData.data.event_name = "Home";
         axios.post(url, postData).then(()=>{
             console.log("3 req");
             console.log(postData);
             postData.data.meta_data = "true";
-            postData.data.log_id = create_UUID();
+            postData.data.log_id = uuid.create_UUID();
             postData.data.log_time = "2023-09-18 19:42:15.004567";
-            postData.data.ssid = create_UUID();
+            postData.data.ssid = uuid.create_UUID();
             postData.data.event_name = "Explore";
             axios.post(url, postData).then(()=>{
                 console.log("4 req");
                 console.log(postData);
-                postData.data.log_id = create_UUID();
+                postData.data.log_id = uuid.create_UUID();
                 postData.data.log_time = "2023-09-18 19:42:25.004567";
-                postData.data.ssid = create_UUID();
+                postData.data.ssid = uuid.create_UUID();
                 postData.data.event_name = "Profile";
                 axios.post(url, postData).then(()=>{
                     console.log("5 req");

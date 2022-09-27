@@ -1,24 +1,16 @@
 const axios = require('axios');
 const JsonData = require("./DummyData");
 const uuid = require('uuid');
-//uuid()
+const uuid = require('./GetUUID.js');
+
 var postData= {data:JSON.parse(JsonData.empty)}
 
 // POST
 var url = 'https://streams.flamapp.com/flamV2-dev-clickstream'
 var testurl = 'https://jsonplaceholder.typicode.com/posts'
-function create_UUID(){
-  var dt = new Date().getTime();
-  var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-      var r = (dt + Math.random()*16)%16 | 0;
-      dt = Math.floor(dt/16);
-      return (c=='x' ? r :(r&0x3|0x8)).toString(16);
-  });
-  return uuid;
-}
 
-postData.data.log_id = create_UUID();
-postData.data.device_id = create_UUID();
+postData.data.log_id = uuid.create_UUID();
+postData.data.device_id = uuid.create_UUID();
 postData.data.country = "IN";
 postData.data.ip = "168.212.226.204";
 postData.data.log_time = "2022-09-01 19:30:25.000012";
@@ -30,9 +22,9 @@ postData.data.device_details.device_type = "One Plus 9";
 postData.data.device_details.os = "android";
 postData.data.device_details.platform = "Android";
 postData.data.ui_variant = "1";
-postData.data.psid = create_UUID();
-postData.data.csid = create_UUID();
-postData.data.ssid = create_UUID();
+postData.data.psid = uuid.create_UUID();
+postData.data.csid = uuid.create_UUID();
+postData.data.ssid = uuid.create_UUID();
 postData.data.meta_data = "false";
 postData.data.adjust_event_id = "eventid";
 postData.data.event_id = "eventid";
@@ -42,9 +34,9 @@ postData.data.event_name = "Share Experience";
 postData.data.data.social_media_platform = "Facebook";
 postData.data.data.refer.marketing_channel = "Facebook";
 postData.data.event_description = "";
-postData.data.data.experience.scene_id = create_UUID();
-postData.data.data.experience.move_id = create_UUID();
-postData.data.data.experience.music_id = create_UUID();
+postData.data.data.experience.scene_id = uuid.create_UUID();
+postData.data.data.experience.move_id = uuid.create_UUID();
+postData.data.data.experience.music_id = uuid.create_UUID();
 postData.data.data.experience.is_public = "true";
 postData.data.data.experience.is_shared = "true";
 postData.data.data.experience.is_creation = "false";
