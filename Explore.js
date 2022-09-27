@@ -1,6 +1,7 @@
 const axios = require('axios');
 const JsonData = require("./DummyData");
 const uuid = require('./GetUUID.js');
+const timeinc = require('./TimeIncrementer.js');
 //uuid()
 
 var sendExploreEvent = function(event_url, user_id, guest_user_profile_id, log_time){
@@ -36,7 +37,7 @@ axios.post(event_url, postData).then(function (response) {
     console.log("1 req");
     console.log(postData);
     postData.data.log_id = uuid.create_UUID();
-    postData.data.log_time = "2022-11-16 16:32:10.000023";
+    postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
     postData.data.ssid = uuid.create_UUID();
     postData.data.event_type = "CTA";
     postData.data.event_name = "View Profile";
@@ -44,7 +45,7 @@ axios.post(event_url, postData).then(function (response) {
         console.log("2 req");
         console.log(postData);
         postData.data.log_id = uuid.create_UUID();
-        postData.data.log_time = "2022-11-16 16:32:15.000023";
+        postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
         postData.data.ssid = uuid.create_UUID();
         postData.data.event_type = "CTA";
         postData.data.event_name = "More - Profiles";
@@ -52,7 +53,7 @@ axios.post(event_url, postData).then(function (response) {
             console.log("3 req");
             console.log(postData);
             postData.data.log_id = uuid.create_UUID();
-            postData.data.log_time = "2022-11-16 16:32:25.000023";
+            postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
             postData.data.ssid = uuid.create_UUID();
             postData.data.event_type = "Page View Event";
             postData.data.event_name = "Profile List";
@@ -60,7 +61,7 @@ axios.post(event_url, postData).then(function (response) {
                 console.log("4 req");
                 console.log(postData);
                 postData.data.log_id = uuid.create_UUID();
-                postData.data.log_time = "2022-11-16 16:32:35.000023";
+                postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
                 postData.data.ssid = uuid.create_UUID();
                 postData.data.event_type = "CTA";
                 postData.data.event_name = "Back";
@@ -68,7 +69,7 @@ axios.post(event_url, postData).then(function (response) {
                     console.log("5 req");
                     console.log(postData);
                     postData.data.log_id = uuid.create_UUID();
-                    postData.data.log_time = "2022-11-16 16:32:40.000023";
+                    postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
                     postData.data.ssid = uuid.create_UUID();
                     postData.data.meta_data = "true";
                     postData.data.event_type = "CTA";
@@ -77,7 +78,7 @@ axios.post(event_url, postData).then(function (response) {
                         console.log("6 req");
                         console.log(postData);
                         postData.data.log_id = uuid.create_UUID();
-                        postData.data.log_time = "2022-11-16 16:32:45.000023";
+                        postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
                         postData.data.ssid = uuid.create_UUID();
                         postData.data.event_type = "CTA";
                         postData.data.event_name = "More - Trending Experiences";
@@ -85,7 +86,7 @@ axios.post(event_url, postData).then(function (response) {
                             console.log("7 req");
                             console.log(postData);
                             postData.data.log_id = uuid.create_UUID();
-                            postData.data.log_time = "2022-11-16 16:32:50.000023";
+                            postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
                             postData.data.ssid = uuid.create_UUID();
                             postData.data.event_type = "Page View Event";
                             postData.data.event_name = "Trending Experiences";
@@ -93,7 +94,7 @@ axios.post(event_url, postData).then(function (response) {
                                 console.log("8 req");
                                 console.log(postData);
                                 postData.data.log_id = uuid.create_UUID();
-                                postData.data.log_time = "2022-11-16 16:32:55.000023";
+                                postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
                                 postData.data.ssid = uuid.create_UUID();
                                 postData.data.event_type = "CTA";
                                 postData.data.event_name = "More - Hashtag Experiences";
@@ -101,7 +102,7 @@ axios.post(event_url, postData).then(function (response) {
                                     console.log("9 req");
                                     console.log(postData);
                                     postData.data.log_id = uuid.create_UUID();
-                                    postData.data.log_time = "2022-11-16 16:33:05.000023";
+                                    postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
                                     postData.data.ssid = uuid.create_UUID();
                                     postData.data.event_type = "Page View Event";
                                     postData.data.event_name = "Hashtag - Experiences";

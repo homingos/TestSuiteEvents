@@ -1,6 +1,7 @@
 const axios = require('axios');
 const JsonData = require("./DummyData");
 const uuid = require('./GetUUID.js');
+const timeinc = require('./TimeIncrementer.js');
 
 var sendAppUpdateEvent = function(event_url, user_id, guest_user_profile_id, log_time){
     var postData= {data:JSON.parse(JsonData.empty)}
@@ -35,7 +36,7 @@ var sendAppUpdateEvent = function(event_url, user_id, guest_user_profile_id, log
         console.log(postData);
         postData.data.log_id = uuid.create_UUID();
         postData.data.ssid = uuid.create_UUID();
-        postData.data.log_time = "2022-09-18 17:35:45.004567";
+        postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
         postData.data.adjust_event_id = "appforce";
         postData.data.event_id = "appupdate";
         postData.data.event_name = "Prompt Force Update";
@@ -45,7 +46,7 @@ var sendAppUpdateEvent = function(event_url, user_id, guest_user_profile_id, log
             postData.data.meta_data = "true";
             postData.data.log_id = uuid.create_UUID();
             postData.data.ssid = uuid.create_UUID();
-            postData.data.log_time = "2022-09-18 17:35:55.004567";
+            postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
             postData.data.adjust_event_id = "appupnow";
             postData.data.event_id = "appupdate";
             postData.data.event_type = "CTA";
@@ -55,7 +56,7 @@ var sendAppUpdateEvent = function(event_url, user_id, guest_user_profile_id, log
                 console.log(postData);
                 postData.data.log_id = uuid.create_UUID();
                 postData.data.ssid = uuid.create_UUID();
-                postData.data.log_time = "2022-09-18 17:36:05.004567";
+                postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
                 postData.data.adjust_event_id = "appdecup";
                 postData.data.event_id = "appupdate";
                 postData.data.event_name = "Declined Update";

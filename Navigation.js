@@ -1,13 +1,14 @@
 const axios = require('axios');
 const JsonData = require("./DummyData");
 const uuid = require('./GetUUID.js');
-
+const timeinc = require('./TimeIncrementer.js');
 //uuid()
-var postData= {data:JSON.parse(JsonData.empty)}
+
 
 // POST
 
 var sendNavigationEvent = function(event_url, user_id, guest_user_profile_id, log_time){
+var postData= {data:JSON.parse(JsonData.empty)}
 postData.data.log_id = uuid.create_UUID();
 postData.data.device_id = uuid.create_UUID();
 postData.data.country = "IN";
@@ -39,7 +40,7 @@ axios.post(event_url, postData).then(function (response) {
     console.log("1 req");
     console.log(postData);
     postData.data.log_id = uuid.create_UUID();
-    postData.data.log_time = "2022-09-18 19:42:05.000023";
+    postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
     postData.data.ssid = uuid.create_UUID();
     postData.data.event_name = "Notification";
     axios.post(event_url, postData).then(()=>{
@@ -53,14 +54,14 @@ axios.post(event_url, postData).then(function (response) {
             console.log(postData);
             postData.data.meta_data = "true";
             postData.data.log_id = uuid.create_UUID();
-            postData.data.log_time = "2022-09-18 19:42:15.004567";
+            postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
             postData.data.ssid = uuid.create_UUID();
             postData.data.event_name = "Explore";
             axios.post(event_url, postData).then(()=>{
                 console.log("4 req");
                 console.log(postData);
                 postData.data.log_id = uuid.create_UUID();
-                postData.data.log_time = "2022-09-18 19:42:25.004567";
+                postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
                 postData.data.ssid = uuid.create_UUID();
                 postData.data.event_name = "Profile";
                 axios.post(event_url, postData).then(()=>{

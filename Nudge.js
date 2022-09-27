@@ -1,6 +1,7 @@
 const axios = require('axios');
 const JsonData = require("./DummyData");
 const uuid = require('uuid');
+const timeinc = require('./TimeIncrementer.js');
 //uuid()
 
 var sendNudgeEvent = function(event_url, user_id, guest_user_profile_id, log_time){
@@ -35,7 +36,7 @@ axios.post(event_url, postData).then(function (response) {
     postData.data.meta_data = "true";
     postData.data.user_details.guest_user_profile_id = postData.data.user_profile_id;
     postData.data.user_profile_id = "b7a66a11-6ea2-4df1-a2c8-8f23ad5d4902";
-    postData.data.log_time = "2022-10-15 10:41:05.546370";
+    postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
     postData.data.log_id = uuid.create_UUID();
     postData.data.ssid = uuid.create_UUID();
     postData.data.adjust_event_id = "nudgesucc";
@@ -49,7 +50,7 @@ axios.post(event_url, postData).then(function (response) {
         console.log(postData);
         postData.data.user_details.guest_user_profile_id = "";
         postData.data.user_details.is_guest = "true";
-        postData.data.log_time = "2022-10-15 10:41:15.546370";
+        postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
         postData.data.log_id = uuid.create_UUID();
         postData.data.ssid = uuid.create_UUID();
         postData.data.adjust_event_id = "nudgedec";

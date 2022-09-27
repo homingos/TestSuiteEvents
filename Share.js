@@ -1,12 +1,12 @@
 const axios = require('axios');
 const JsonData = require("./DummyData");
-const uuid = require('uuid');
 const uuid = require('./GetUUID.js');
+const timeinc = require('./TimeIncrementer.js');
 
-var postData= {data:JSON.parse(JsonData.empty)}
 
 // POST
 var sendShareEvent = function(event_url, user_id, guest_user_profile_id, log_time){
+var postData= {data:JSON.parse(JsonData.empty)}
 postData.data.log_id = uuid.create_UUID();
 postData.data.device_id = uuid.create_UUID();
 postData.data.country = "IN";

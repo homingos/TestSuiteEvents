@@ -1,11 +1,13 @@
 const axios = require('axios');
 const JsonData = require("./DummyData");
 const uuid = require('./GetUUID.js');
+const timeinc = require('./TimeIncrementer.js');
 //uuid()
-var postData= {data:JSON.parse(JsonData.empty)}
+
 
 // POST
 var sendProfileEvent = function(event_url, user_id, guest_user_profile_id, log_time){
+var postData= {data:JSON.parse(JsonData.empty)}
 postData.data.log_id = uuid.create_UUID();
 postData.data.device_id = uuid.create_UUID();
 postData.data.country = "IN";
@@ -37,7 +39,7 @@ axios.post(event_url, postData).then(function (response) {
     console.log("1 req");
     console.log(postData);
     postData.data.log_id = uuid.create_UUID();
-    postData.data.log_time = "2022-09-18 17:30:55.004305";
+    postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
     postData.data.ssid = uuid.create_UUID();
     postData.data.meta_data = "false"
     postData.data.user_details.avatar_event_url = "www.youtube.com";
@@ -47,7 +49,7 @@ axios.post(event_url, postData).then(function (response) {
         console.log("2 req");
         console.log(postData);
         postData.data.log_id = uuid.create_UUID();
-        postData.data.log_time = "2022-09-18 17:31:05.004305";
+        postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
         postData.data.ssid = uuid.create_UUID();
         postData.data.event_name = "View Experience";
         postData.data.data.experience.experience_id = "ksdjh789-4rf5-4df1-o9i0-8f23ad5d4902";
@@ -56,28 +58,28 @@ axios.post(event_url, postData).then(function (response) {
             console.log("3 req");
             console.log(postData);
             postData.data.log_id = uuid.create_UUID();
-            postData.data.log_time = "2022-09-18 17:31:15.004305";
+            postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
             postData.data.ssid = uuid.create_UUID();
             postData.data.event_name = "Change Avatar";
             axios.post(event_url, postData).then(() =>{
                 console.log("4 req");
                 console.log(postData);
                 postData.data.log_id = uuid.create_UUID();
-                postData.data.log_time = "2022-09-18 17:31:25.004305";
+                postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
                 postData.data.ssid = uuid.create_UUID();
                 postData.data.event_name = "Avatar Changed";
                 axios.post(event_url, postData).then(function (response) {
                     console.log("5 req");
                     console.log(postData);
                     postData.data.log_id = uuid.create_UUID();
-                    postData.data.log_time = "2022-09-18 17:31:35.004305";
+                    postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
                     postData.data.ssid = uuid.create_UUID();
                     postData.data.event_name = "Profile Settings";
                     axios.post(event_url, postData).then(()=> {
                         console.log("6 req");
                         console.log(postData);
                         postData.data.log_id = uuid.create_UUID();
-                        postData.data.log_time = "2022-09-18 17:31:45.004305";
+                        postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
                         postData.data.ssid = uuid.create_UUID();
                         postData.data.meta_data = "true";
                         postData.data.event_type = "Page View Event";
@@ -86,7 +88,7 @@ axios.post(event_url, postData).then(function (response) {
                             console.log("7 req");
                             console.log(postData);
                             postData.data.log_id = uuid.create_UUID();
-                            postData.data.log_time = "2022-09-18 17:31:46.004305";
+                            postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
                             postData.data.ssid = uuid.create_UUID();
                             postData.data.event_type = "CTA";
                             postData.data.event_name = "Change Username";
@@ -94,7 +96,7 @@ axios.post(event_url, postData).then(function (response) {
                                 console.log("8 req");
                                 console.log(postData);
                                 postData.data.log_id = uuid.create_UUID();
-                                postData.data.log_time = "2022-09-18 17:32:05.004305";
+                                postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
                                 postData.data.ssid = uuid.create_UUID();
                                 postData.data.event_type = "Page View Event";
                                 postData.data.event_name = "Username Updation";
@@ -102,7 +104,7 @@ axios.post(event_url, postData).then(function (response) {
                                     console.log("9 req");
                                     console.log(postData);
                                     postData.data.log_id = uuid.create_UUID();
-                                    postData.data.log_time = "2022-09-18 17:32:15.004305";
+                                    postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
                                     postData.data.ssid = uuid.create_UUID();
                                     postData.data.event_type = "CTA";
                                     postData.data.event_name = "Confirm Username Updation";
@@ -110,7 +112,7 @@ axios.post(event_url, postData).then(function (response) {
                                         console.log("10 req");
                                         console.log(postData);
                                         postData.data.log_id = uuid.create_UUID();
-                                        postData.data.log_time = "2022-09-18 17:32:25.004305";
+                                        postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
                                         postData.data.ssid = uuid.create_UUID();
                                         postData.data.event_type = "CTA";
                                         postData.data.event_name = "Change Name";
@@ -118,7 +120,7 @@ axios.post(event_url, postData).then(function (response) {
                                             console.log("11 req");
                                             console.log(postData);
                                             postData.data.log_id = uuid.create_UUID();
-                                            postData.data.log_time = "2022-09-18 17:32:35.004305";
+                                            postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
                                             postData.data.ssid = uuid.create_UUID();
                                             postData.data.event_type = "Page View Event";
                                             postData.data.event_name = "Name Updation";
@@ -126,7 +128,7 @@ axios.post(event_url, postData).then(function (response) {
                                                 console.log("12 req");
                                                 console.log(postData);
                                                 postData.data.log_id = uuid.create_UUID();
-                                                postData.data.log_time = "2022-09-18 17:32:45.004305";
+                                                postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
                                                 postData.data.ssid = uuid.create_UUID();
                                                 postData.data.event_type = "CTA";
                                                 postData.data.event_name = "Confirm Name Updation";
@@ -134,21 +136,21 @@ axios.post(event_url, postData).then(function (response) {
                                                     console.log("13 req");
                                                     console.log(postData);
                                                     postData.data.log_id = uuid.create_UUID();
-                                                    postData.data.log_time = "2022-09-18 17:32:55.004305";
+                                                    postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
                                                     postData.data.ssid = uuid.create_UUID();
                                                     postData.data.event_name = "Logout";
-                                                    // axios.post(event_url, postData).then(()=> {
-                                                    //     console.log("14 req");
-                                                    //     console.log(postData);
-                                                    //     postData.data.log_id = uuid.create_UUID();
-                                                    //     postData.data.log_time = "2022-09-18 17:33:05.004305";
-                                                    //     postData.data.ssid = uuid.create_UUID();
-                                                    //     postData.data.event_name = "Create Experience";
-                                                    //     axios.post(event_url, postData).then(()=> {
-                                                    //         console.log("15 req");
-                                                    //         console.log(postData);
-                                                    //     })
-                                                    // })
+                                                    axios.post(event_url, postData).then(()=> {
+                                                        console.log("14 req");
+                                                        console.log(postData);
+                                                        postData.data.log_id = uuid.create_UUID();
+                                                        postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
+                                                        postData.data.ssid = uuid.create_UUID();
+                                                        postData.data.event_name = "Create Experience";
+                                                        axios.post(event_url, postData).then(()=> {
+                                                            console.log("15 req");
+                                                            console.log(postData);
+                                                        })
+                                                    })
                                                 })
                                             })
                                         })
