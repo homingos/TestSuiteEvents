@@ -20,7 +20,7 @@ function create_UUID(){
 postData.data.log_id = create_UUID();
 postData.data.device_id = create_UUID();
 postData.data.user_profile_id = "";
-postData.data.country = "IND";
+postData.data.country = "IN";
 postData.data.ip = "168.212.226.204";
 postData.data.log_time = new Date().getTime();;
 postData.data.log_time = "2022-11-16 16:32:05.000023";

@@ -19,7 +19,7 @@ function create_UUID(){
 
 postData.data.log_id = create_UUID();
 postData.data.device_id = create_UUID();
-postData.data.country = "IND";
+postData.data.country = "IN";
 postData.data.ip = "168.212.226.204";
 postData.data.log_time = "2022-09-01 19:30:25.000012";
 postData.data.user_details.avatar_url = "www.youtube.com";

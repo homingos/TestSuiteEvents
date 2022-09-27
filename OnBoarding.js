@@ -20,7 +20,7 @@ function create_UUID(){
 postData.data.log_id = create_UUID();
 postData.data.device_id = create_UUID();
 postData.data.user_profile_id = "9940c74-ed38-4305-861b-e1ebfa783a6e";
-postData.data.country = "IND";
+postData.data.country = "IN";
 postData.data.ip = "168.212.226.204";
 postData.data.log_time = "2023-06-20 13:01:25.000012";
 postData.data.user_details.avatar_url = "";
