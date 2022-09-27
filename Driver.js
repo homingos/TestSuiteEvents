@@ -32,7 +32,8 @@ sendAppUpdateEvent();
 function sendOnBoardingEvent(){
     url = get_correct_url();
     let user = users[Math.floor(Math.random()*users.length)];
-    appUpdate.sendAppUpdateEvent(url, user.user_profile_id, user.user_guest_profile_id, "2022-09-18 18:00:00.000012");
+    appUpdate.sendOnBoardingEvent(url, user.user_profile_id, user.user_guest_profile_id, "2022-09-18 18:00:00.000012");
+    
 }
 
 
