@@ -41,7 +41,7 @@ var sendAppUpdateEvent = function(event_url, user_id, guest_user_profile_id){
     postData.data.data.refer.marketing_channel = "Facebook";
     postData.data.app_version = "0.1.1";
     postData.data.data.experience.is_creation = "false";
-    axios.post(url, postData).then(function (response) {
+    axios.post(event_url, postData).then(function (response) {
         console.log("1st req");
         console.log(postData);
         postData.data.log_id = create_UUID();
@@ -50,7 +50,7 @@ var sendAppUpdateEvent = function(event_url, user_id, guest_user_profile_id){
         postData.data.adjust_event_id = "appforce";
         postData.data.event_id = "appupdate";
         postData.data.event_name = "Prompt Force Update";
-        axios.post(url, postData).then(()=>{
+        axios.post(event_url, postData).then(()=>{
             console.log("2nd req");
             console.log(postData);
             postData.data.meta_data = "true";

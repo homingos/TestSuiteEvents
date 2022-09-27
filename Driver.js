@@ -30,7 +30,7 @@ sendAppUpdateEvent();
 sendOnBoardingEvent();
 
 function sendOnBoardingEvent(){
-
+    
 }
 
 
