@@ -10,6 +10,7 @@ var share = require('./Share.js');
 var profile = require('./Profile.js');
 var explore = require('./Explore.js');
 var nudge = require('./Nudge.js');
+var TimeCounter = require('./TimeIncrementer.js');
 
 let event_url = 'https://streams.flamapp.com/flamV2-dev-clickstream';
 var event_test_url = 'https://jsonplaceholder.typicode.com/posts';
@@ -27,9 +28,10 @@ let getMusicUrl = "https://dev.homingos.com/wolverine/v1/music/admin/all?page=0&
 // let experiences = apiController.getExperiences(getExperiencesUrl, experiencesToken);
 //console.log("GETTING DATA");
 
-var ts = "2022-09-02 17:35:45.004567";
+var ts = "2022-09-02 14:35:45.004567";
 var device_id = "f880e1b5-033a-42d9-ba3a-03f37452a187";
-// var timechange = "";
+var timechange = "2022-09-02 15:00:45.004567";
+
 function get_correct_url(){
     return event_test_url;
 }
@@ -65,21 +67,23 @@ apiController.getServerData(getMovesUrl, adminToken, function(err, moves){
                 }
 
                 var uid = 0;
+                console.log(users[uid]._id);
                 onBoarding.sendOnBoardingEvent(currenturl, device_id, users[uid].transition_id, users[uid]._id, ts);
-                var timechange = "2022-09-02 18:35:45.004567";
-                var OnBoardingDone = true;
-                navigation.sendNavigationEvent(currenturl, device_id, users[uid]._id, users[uid].transition_id, timechange);
-                timechange = "2022-09-02 19:35:45.004567";
+                
+                //var OnBoardingDone = true;
+                TimeCounter.IncreaseTimehr(timechange);
+                navigation.sendNavigationEvent(currenturl, device_id, users[uid]._id, users[uid].transition_id, timechange);                
+                TimeCounter.IncreaseTime2hr(timechange);
                 appUpdate.sendAppUpdateEvent(currenturl, device_id, users[uid]._id, users[uid].transition_id, timechange);
-                timechange = "2022-09-02 20:35:45.004567";
+                TimeCounter.IncreaseTime3hr(timechange);
                 profile.sendProfileEvent(currenturl, device_id, users[uid]._id, users[uid].transition_id, timechange, exp[0]._id);
-                timechange = "2022-09-02 21:35:45.004567";
+                TimeCounter.IncreaseTime4hr(timechange);
                 creation.sendCreationEvent(currenturl, device_id, users[uid]._id, users[uid].transition_id, timechange, moves[uid]._id, music[uid]._id, exp[uid]._id, scene[uid]._id);
-                timechange = "2022-09-02 22:35:45.004567";
+                TimeCounter.IncreaseTime5hr(timechange);
                 explore.sendExploreEvent(currenturl, device_id, users[uid]._id, users[uid].transition_id, timechange);
-                timechange = "2022-09-02 23:35:45.004567";
+                TimeCounter.IncreaseTime6hr(timechange);
                 feed.sendFeedEvent(currenturl, device_id, users[uid]._id, users[uid].transition_id, timechange, moves[uid]._id, music[uid]._id, exp[uid]._id, scene[uid]._id);
-                timechange = "2022-09-02 23:45:45.004567";
+                TimeCounter.IncreaseTime7hr(timechange);
                 share.sendShareEvent(currenturl, device_id, users[uid]._id, users[uid].transition_id, timechange, moves[uid]._id, music[uid]._id, exp[uid]._id, scene[uid]._id);
             })
             })
