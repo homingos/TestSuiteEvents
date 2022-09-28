@@ -48,7 +48,7 @@ apiController.getServerData(getMovesUrl, adminToken, function(err, moves){
             if (err){
                 console.error(err);
             }
-            //console.log("Scene DONE ", scene.length);
+            //console.log("Scene DONE ", scene);
 
             apiController.getServerData(getExperiencesUrl, adminToken, function(err, exp){
                 if (err){
@@ -60,18 +60,24 @@ apiController.getServerData(getMovesUrl, adminToken, function(err, moves){
                 if (err){
                     console.error(err);
                 }
-                console.log("Users ", users[0]);
-                console.log("Length ", users.length);
-                //console.log("Scene ", scene[0]);
-                //console.log("Music", music[0]);
-                //console.log("Move", moves[0]);
-                //console.log("experience", exp[0]);
+
                 var uid = 0;
-                onBoarding.sendOnBoardingEvent(currenturl, users[uid], users[uid].transition_id, ts);
-                var timechange = "";
-                //navigation.sendNavigationEvent(currenturl, users[0].transition_id, users[0], ts);
-                //appUpdate.sendAppUpdateEvent(currenturl, users[0].transition_id, users[0], ts);
-                })
+                //onBoarding.sendOnBoardingEvent(currenturl, users[uid]._id, users[uid].transition_id, ts);
+                var timechange = "2022-09-02 18:35:45.004567";
+                //navigation.sendNavigationEvent(currenturl, users[uid].transition_id, users[uid]._id, timechange);
+                timechange = "2022-09-02 19:35:45.004567";
+                //appUpdate.sendAppUpdateEvent(currenturl, users[uid].transition_id, users[uid]._id, timechange);
+                timechange = "2022-09-02 20:35:45.004567";
+                //profile.sendProfileEvent(currenturl, users[uid].transition_id, users[uid]._id, timechange, exp[0]._id);
+                timechange = "2022-09-02 21:35:45.004567";
+                //creation.sendCreationEvent(currenturl, users[uid].transition_id, users[uid]._id, timechange, moves[uid]._id, music[uid]._id, exp[uid]._id, scene[uid]._id);
+                timechange = "2022-09-02 22:35:45.004567";
+                //explore.sendExploreEvent(currenturl, users[uid].transition_id, users[uid]._id, timechange);
+                timechange = "2022-09-02 23:35:45.004567";
+                //feed.sendFeedEvent(currenturl, users[uid].transition_id, users[uid]._id, timechange, moves[uid]._id, music[uid]._id, exp[uid]._id, scene[uid]._id);
+                timechange = "2022-09-02 23:45:45.004567";
+                share.sendShareEvent(currenturl, users[uid].transition_id, users[uid]._id, timechange, moves[uid]._id, music[uid]._id, exp[uid]._id, scene[uid]._id);
+            })
             })
         })
 

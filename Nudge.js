@@ -44,7 +44,7 @@ axios.post(event_url, postData).then(function (response) {
     postData.data.event_type = "CTA";
     postData.data.event_name = "Successful";
     postData.data.user_details.is_guest = "false";
-    postData.data.data.experience.is_creation = "true";
+    postData.data.data.experience.is_creation = "false";
     axios.post(event_url, postData).then(()=>{
         console.log("2nd req");
         console.log(postData);

@@ -6,7 +6,7 @@ const timeinc = require('./TimeIncrementer.js');
 
 
 // POST
-var sendProfileEvent = function(event_url, user_id, guest_user_profile_id, log_time){
+var sendProfileEvent = function(event_url, user_id, guest_user_profile_id, log_time, exp_id){
 var postData= {data:JSON.parse(JsonData.empty)}
 postData.data.log_id = uuid.create_UUID();
 postData.data.device_id = uuid.create_UUID();
@@ -52,8 +52,8 @@ axios.post(event_url, postData).then(function (response) {
         postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
         postData.data.ssid = uuid.create_UUID();
         postData.data.event_name = "View Experience";
-        postData.data.data.experience.experience_id = "ksdjh789-4rf5-4df1-o9i0-8f23ad5d4902";
-        postData.data.data.experience.creator_info = "op9ik789-897y-1fde-90a7-8f23ad5d4902";
+        postData.data.data.experience.experience_id = exp_id;
+        postData.data.data.experience.creator_info = uuid.create_UUID;
         axios.post(event_url, postData).then(()=> {
             console.log("3 req");
             console.log(postData);

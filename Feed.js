@@ -7,7 +7,7 @@ const timeinc = require('./TimeIncrementer.js');
 
 // POST
 
-var sendFeedEvent = function(event_url, user_id, guest_user_profile_id, log_time){
+var sendFeedEvent = function(event_url, user_id, guest_user_profile_id, log_time, move_id, music_id, exp_id, scene_id){
 var postData= {data:JSON.parse(JsonData.empty)}
 postData.data.log_id = uuid.create_UUID();
 postData.data.device_id = uuid.create_UUID();
@@ -64,7 +64,7 @@ axios.post(event_url, postData).then(function (response) {
                 postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
                 postData.data.ssid = uuid.create_UUID();
                 postData.data.event_name = "Experience Loader";
-                postData.data.data.experience.experience_id = uuid.create_UUID();
+                postData.data.data.experience.experience_id = exp_id;
                 axios.post(event_url, postData).then(()=>{
                     console.log("5 req");
                     console.log(postData);
@@ -73,9 +73,9 @@ axios.post(event_url, postData).then(function (response) {
                     postData.data.ssid = uuid.create_UUID();
                     postData.data.meta_data = "true";
                     postData.data.event_name = "Experience Start";
-                    postData.data.data.experience.scene_id = uuid.create_UUID();
-                    postData.data.data.experience.move_id = uuid.create_UUID();
-                    postData.data.data.experience.music_id = uuid.create_UUID();
+                    postData.data.data.experience.scene_id = scene_id;
+                    postData.data.data.experience.move_id = move_id;
+                    postData.data.data.experience.music_id = music_id;
                     postData.data.data.experience.is_public = "true";
                     postData.data.data.experience.is_shared = "true";
                     postData.data.data.experience.is_creation = "false";
@@ -134,7 +134,7 @@ axios.post(event_url, postData).then(function (response) {
                                                 //postData.data.user_details.guest_user_profile_id = postData.data.user_profile_id;
                                                 //postData.data.user_profile_id = "b7a66a11-6ea2-4df1-a2c8-8f23ad5d4902";
                                                 //postData.data.user_details.is_guest = "false";
-                                                postData.data.data.experience.experience_id = uuid.create_UUID();
+                                                postData.data.data.experience.experience_id = exp_id;
                                                 postData.data.event_name = "Experience Liked";
                                                 postData.data.meta_data = "false";
                                                 axios.post(event_url, postData).then(()=>{

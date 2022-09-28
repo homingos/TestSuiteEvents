@@ -5,16 +5,16 @@ const timeinc = require('./TimeIncrementer.js');
 
 //uuid()
 
-var sendCreationEvent = function(event_url, user_id, guest_user_profile_id, log_time){
+var sendCreationEvent = function(event_url, user_id, guest_user_profile_id, log_time, move_id, music_id, exp_id, scene_id){
 var postData= {data:JSON.parse(JsonData.empty)}
 postData.data.log_id = uuid.create_UUID();
 postData.data.device_id = uuid.create_UUID();
-postData.data.user_profile_id = "b7a66a11-6ea2-4df1-a2c8-8f23ad5d4902";
+postData.data.user_profile_id = user_id;
 postData.data.country = "IN";
 postData.data.ip = "168.212.226.204";
 postData.data.log_time = log_time;
 postData.data.user_details.avatar_url = "www.youtube.com";
-postData.data.user_details.guest_user_profile_id = "9940c74-ed38-4305-861b-e1ebfa783a6e";
+postData.data.user_details.guest_user_profile_id = guest_user_profile_id;
 postData.data.user_details.is_guest = "false";
 postData.data.device_details.device_type = "One Plus 9";
 postData.data.device_details.os = "android";
@@ -80,8 +80,8 @@ axios.post(event_url, postData)
                 postData.data.ssid = uuid.create_UUID();
                 postData.data.user_details.avatar_event_url = "www.newavatar.com";                
                 postData.data.event_name = "Avatar Rendered";
-                postData.data.data.experience.move_id = uuid.create_UUID();
-                const moveID = postData.data.data.experience.move_id;
+                postData.data.data.experience.move_id = move_id;
+                //const moveID = postData.data.data.experience.move_id;
                 axios.post(event_url, postData).then(()=>{
                 console.log("7th req");
                 console.log(postData);
@@ -134,8 +134,8 @@ axios.post(event_url, postData)
                                   postData.data.log_id = uuid.create_UUID();
                                   postData.data.ssid = uuid.create_UUID();
                                   postData.data.event_name = "Moves Options";
-                                  postData.data.data.experience.move_id = "";
-                                  postData.data.data.experience.music_id = uuid.create_UUID();
+                                  postData.data.data.experience.move_id = move_id;
+                                  postData.data.data.experience.music_id = music_id;
                                   axios.post(event_url, postData).then(()=>{
                                     console.log("14th req");
                                     console.log(postData);
@@ -160,7 +160,7 @@ axios.post(event_url, postData)
                                         postData.data.ssid = uuid.create_UUID();
                                         postData.data.event_type = "Page View Event";
                                         postData.data.event_name = "Warning - Remove Recorded Moves";
-                                        postData.data.data.experience.move_id = moveID;
+                                        postData.data.data.experience.move_id = move_id;
                                         axios.post(event_url, postData).then(()=>{
                                           console.log("17th req");
                                           console.log(postData);
@@ -205,7 +205,7 @@ axios.post(event_url, postData)
                                                     postData.data.log_id = uuid.create_UUID();
                                                     postData.data.ssid = uuid.create_UUID();
                                                     postData.data.event_name = "Camera Mode";
-                                                    postData.data.data.experience.scene_id = uuid.create_UUID();
+                                                    postData.data.data.experience.scene_id = scene_id;
                                                     axios.post(event_url, postData).then(()=>{
                                                       console.log("23rd req");
                                                       console.log(postData);
@@ -224,7 +224,7 @@ axios.post(event_url, postData)
                                                         postData.data.ssid = uuid.create_UUID();
                                                         postData.data.event_type = "Page View Event";
                                                         postData.data.event_name = "Finalized Creation";
-                                                        postData.data.data.experience.experience_id = uuid.create_UUID();
+                                                        postData.data.data.experience.experience_id = exp_id;
                                                         postData.data.data.experience.is_creation = "true";
                                                         postData.data.data.experience.creator_info = uuid.create_UUID();
                                                         axios.post(event_url, postData).then(()=>{
