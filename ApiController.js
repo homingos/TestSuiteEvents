@@ -16,6 +16,7 @@ var getServerData = function(url, token, callback){
     .then((res)=>{
         // console.log(res.data.data);
         callback(null, res.data.data);
+        
     })
     .catch((err) => {
         callback(err, null)

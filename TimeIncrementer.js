@@ -35,5 +35,5 @@ var IncreaseTime7hr = function(oldTime){
     let time = moment(oldTime).add(7, 'h').format('YYYY-MM-DD HH:mm:ss.SSSSSS');
     return time;
 }
-console.log(IncreaseTime7hr("2022-09-02 15:35:45.004567"));
+//console.log(IncreaseTime7hr("2022-09-02 15:35:45.004567"));
 module.exports = {IncreaseTime, IncreaseTimehr, IncreaseTime2hr, IncreaseTime3hr, IncreaseTime4hr, IncreaseTime5hr, IncreaseTime6hr, IncreaseTime7hr}

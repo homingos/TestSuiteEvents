@@ -176,6 +176,7 @@ axios.post(event_url, postData).then(function (response) {
                                                                     axios.post(event_url, postData).then(()=>{
                                                                         console.log("18 req");
                                                                         console.log(postData);
+                                                       
                                                                 })                                                                                                          
                                                             })                                              
                                                         })                                                           
