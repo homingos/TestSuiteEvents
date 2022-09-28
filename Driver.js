@@ -25,7 +25,7 @@ let getMusicUrl = "https://dev.homingos.com/wolverine/v1/music/admin/all?page=0&
 // let experiences = apiController.getExperiences(getExperiencesUrl, experiencesToken);
 //console.log("GETTING DATA");
 
-let ts = "2022-09-02 17:35:45.004567";
+var ts = "2022-09-02 17:35:45.004567";
 
 function get_correct_url(){
     return event_test_url;
@@ -61,13 +61,16 @@ apiController.getServerData(getMovesUrl, adminToken, function(err, moves){
                     console.error(err);
                 }
                 console.log("Users ", users[0]);
+                console.log("Length ", users.length);
                 //console.log("Scene ", scene[0]);
                 //console.log("Music", music[0]);
                 //console.log("Move", moves[0]);
                 //console.log("experience", exp[0]);
-                
-                onBoarding.sendOnBoardingEvent(currenturl, users[0], users[0].transition_id, ts);
-                
+                var uid = 0;
+                onBoarding.sendOnBoardingEvent(currenturl, users[uid], users[uid].transition_id, ts);
+                var timechange = "";
+                //navigation.sendNavigationEvent(currenturl, users[0].transition_id, users[0], ts);
+                //appUpdate.sendAppUpdateEvent(currenturl, users[0].transition_id, users[0], ts);
                 })
             })
         })

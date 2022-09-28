@@ -59,7 +59,7 @@ axios.post(event_url, postData).then(function (response) {
                 console.log("4rth req");
                 console.log(postData);
                 postData.data.log_id = uuid.create_UUID();
-                ppostData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
+                postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
                 postData.data.ssid = uuid.create_UUID();
                 postData.data.event_type = "Page View Event";
                 postData.data.event_name = "Request Gallery Permission";
