@@ -78,7 +78,7 @@ axios.post(event_url, postData)
               postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
                 postData.data.log_id = uuid.create_UUID();
                 postData.data.ssid = uuid.create_UUID();
-                postData.data.user_details.avatar_event_url = "www.newavatar.com";                
+                postData.data.user_details.avatar_url = "www.newavatar.com";                
                 postData.data.event_name = "Avatar Rendered";
                 postData.data.data.experience.move_id = move_id;
                 //const moveID = postData.data.data.experience.move_id;
@@ -103,7 +103,7 @@ axios.post(event_url, postData)
                         postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
                           postData.data.log_id = uuid.create_UUID();
                           postData.data.ssid = uuid.create_UUID();
-                          postData.data.user_details.avatar_event_url = "www.changedavatar.com";
+                          postData.data.user_details.avatar_url = "www.changedavatar.com";
                           postData.data.event_name = "Change Avatar";
                           axios.post(event_url, postData).then(()=>{
                             console.log("10th req");

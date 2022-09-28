@@ -42,7 +42,7 @@ axios.post(event_url, postData).then(function (response) {
     postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
     postData.data.ssid = uuid.create_UUID();
     postData.data.meta_data = "false"
-    postData.data.user_details.avatar_event_url = "www.youtube.com";
+    postData.data.user_details.avatar_url = "www.youtube.com";
     postData.data.event_type = "CTA";
     postData.data.event_name = "View Avatar";
     axios.post(event_url, postData).then(()=>{

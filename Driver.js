@@ -29,6 +29,7 @@ let getMusicUrl = "https://dev.homingos.com/wolverine/v1/music/admin/all?page=0&
 
 var ts = "2022-09-02 17:35:45.004567";
 var device_id = "f880e1b5-033a-42d9-ba3a-03f37452a187";
+// var timechange = "";
 function get_correct_url(){
     return event_test_url;
 }
@@ -64,21 +65,22 @@ apiController.getServerData(getMovesUrl, adminToken, function(err, moves){
                 }
 
                 var uid = 0;
-                onBoarding.sendOnBoardingEvent(currenturl, device_id, users[uid]._id, users[uid].transition_id, ts);
+                onBoarding.sendOnBoardingEvent(currenturl, device_id, users[uid].transition_id, users[uid]._id, ts);
                 var timechange = "2022-09-02 18:35:45.004567";
-                navigation.sendNavigationEvent(currenturl, device_id, users[uid].transition_id, users[uid]._id, timechange);
+                var OnBoardingDone = true;
+                navigation.sendNavigationEvent(currenturl, device_id, users[uid]._id, users[uid].transition_id, timechange);
                 timechange = "2022-09-02 19:35:45.004567";
-                appUpdate.sendAppUpdateEvent(currenturl, device_id, users[uid].transition_id, users[uid]._id, timechange);
+                appUpdate.sendAppUpdateEvent(currenturl, device_id, users[uid]._id, users[uid].transition_id, timechange);
                 timechange = "2022-09-02 20:35:45.004567";
-                profile.sendProfileEvent(currenturl, device_id, users[uid].transition_id, users[uid]._id, timechange, exp[0]._id);
+                profile.sendProfileEvent(currenturl, device_id, users[uid]._id, users[uid].transition_id, timechange, exp[0]._id);
                 timechange = "2022-09-02 21:35:45.004567";
-                creation.sendCreationEvent(currenturl, device_id, users[uid].transition_id, users[uid]._id, timechange, moves[uid]._id, music[uid]._id, exp[uid]._id, scene[uid]._id);
+                creation.sendCreationEvent(currenturl, device_id, users[uid]._id, users[uid].transition_id, timechange, moves[uid]._id, music[uid]._id, exp[uid]._id, scene[uid]._id);
                 timechange = "2022-09-02 22:35:45.004567";
-                explore.sendExploreEvent(currenturl, device_id, users[uid].transition_id, users[uid]._id, timechange);
+                explore.sendExploreEvent(currenturl, device_id, users[uid]._id, users[uid].transition_id, timechange);
                 timechange = "2022-09-02 23:35:45.004567";
-                feed.sendFeedEvent(currenturl, device_id, users[uid].transition_id, users[uid]._id, timechange, moves[uid]._id, music[uid]._id, exp[uid]._id, scene[uid]._id);
+                feed.sendFeedEvent(currenturl, device_id, users[uid]._id, users[uid].transition_id, timechange, moves[uid]._id, music[uid]._id, exp[uid]._id, scene[uid]._id);
                 timechange = "2022-09-02 23:45:45.004567";
-                share.sendShareEvent(currenturl, device_id, users[uid].transition_id, users[uid]._id, timechange, moves[uid]._id, music[uid]._id, exp[uid]._id, scene[uid]._id);
+                share.sendShareEvent(currenturl, device_id, users[uid]._id, users[uid].transition_id, timechange, moves[uid]._id, music[uid]._id, exp[uid]._id, scene[uid]._id);
             })
             })
         })

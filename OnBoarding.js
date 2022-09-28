@@ -8,13 +8,13 @@ var postData= {data:JSON.parse(JsonData.empty)}
 
 postData.data.log_id = uuid.create_UUID();
 postData.data.device_id = device_id;
-postData.data.user_profile_id = user_id;
+postData.data.user_profile_id = guest_user_profile_id;
 postData.data.country = "IN";
 postData.data.ip = "168.212.226.204";
 postData.data.log_time = log_time;
 postData.data.user_details.avatar_url = "";
 //postData.data.user_details.avatar_event_url = "www.youtube.com";
-postData.data.user_details.guest_user_profile_id = guest_user_profile_id;
+postData.data.user_details.guest_user_profile_id = "";
 postData.data.user_details.is_guest = "true";
 postData.data.device_details.device_type = "One Plus 9";
 postData.data.device_details.os = "android";
@@ -103,23 +103,27 @@ axios.post(event_url, postData).then(function (response) {
                                     postData.data.ssid = uuid.create_UUID();
                                     postData.data.event_type = "CTA";
                                     postData.data.event_name = "Social Media Platform Selection";
-                                    axios.post(event_url, postData).then(()=>{
-                                        console.log("10 req");
-                                        console.log(postData);
-                                        postData.data.log_id = uuid.create_UUID();
-                                        postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
-                                        postData.data.ssid = uuid.create_UUID();
-                                        postData.data.user_details.guest_user_profile_id = postData.data.user_profile_id;
-                                        postData.data.user_profile_id = "b7a66a11-6ea2-4df1-a2c8-8f23ad5d4902";                                        
-                                        postData.data.user_details.is_guest = "false";
-                                        postData.data.event_type = "Page View Event";
-                                        postData.data.event_name = "Login Successful";
+                                    // axios.post(event_url, postData).then(()=>{
+                                    //     console.log("10 req");
+                                    //     console.log(postData);
+                                    //     postData.data.log_id = uuid.create_UUID();
+                                    //     postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
+                                    //     postData.data.ssid = uuid.create_UUID();
+                                    //     postData.data.user_details.guest_user_profile_id = postData.data.user_profile_id;
+                                    //     postData.data.user_profile_id = user_id;                                        
+                                    //     postData.data.user_details.is_guest = "false";
+                                    //     postData.data.event_type = "Page View Event";
+                                    //     postData.data.event_name = "Login Successful";
                                         axios.post(event_url, postData).then(()=>{
                                             console.log("11 req");
                                             console.log(postData);
                                             postData.data.log_id = uuid.create_UUID();
                                             postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
                                             postData.data.ssid = uuid.create_UUID();
+                                            postData.data.user_details.guest_user_profile_id = postData.data.user_profile_id;
+                                            postData.data.user_profile_id = user_id;   
+                                            postData.data.user_details.is_guest = "false";
+                                            postData.data.event_type = "Page View Event";
                                             postData.data.event_name = "Signup Successful";
                                             axios.post(event_url, postData).then(()=>{
                                                 console.log("12 req");
@@ -152,7 +156,7 @@ axios.post(event_url, postData).then(function (response) {
                                                             postData.data.ssid = uuid.create_UUID();
                                                             postData.data.event_type = "Page View Event";
                                                             postData.data.event_name = "Avatar Created";    
-                                                            postData.data.user_details.avatar_event_url = "www.youtube.com";
+                                                            postData.data.user_details.avatar_url = "www.youtube.com";
                                                             axios.post(event_url, postData).then(()=>{
                                                                 console.log("16 req");
                                                                 console.log(postData);
@@ -189,7 +193,7 @@ axios.post(event_url, postData).then(function (response) {
             })
         })
     })
-})
+// })
 })
 .catch(function (error) {
     console.log(error.data);
