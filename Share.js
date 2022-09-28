@@ -6,6 +6,7 @@ const timeinc = require('./TimeIncrementer.js');
 
 // POST
 var sendShareEvent = function(event_url, device_id, user_id, guest_user_profile_id, log_time, move_id, music_id, exp_id, scene_id){
+return new Promise((resolve, reject) => {
 var postData= {data:JSON.parse(JsonData.empty)}
 postData.data.log_id = uuid.create_UUID();
 postData.data.device_id = device_id;
@@ -44,10 +45,12 @@ postData.data.app_version = "0.1.1";
 axios.post(event_url, postData).then(function (response) {
     //console.log("1 req");
     console.log(postData);
+    resolve();
 })
 .catch(function (error) {
     console.log(error.data);
-})
-}
+});
+});
+};
 
 module.exports = {sendShareEvent}

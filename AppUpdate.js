@@ -4,6 +4,7 @@ const uuid = require('./GetUUID.js');
 const timeinc = require('./TimeIncrementer.js');
 
 var sendAppUpdateEvent = function(event_url, device_id, user_id, guest_user_profile_id, log_time){
+return new Promise((resolve, reject) => {
     var postData= {data:JSON.parse(JsonData.empty)}
     //POST
     postData.data.log_id = uuid.create_UUID();
@@ -63,13 +64,16 @@ var sendAppUpdateEvent = function(event_url, device_id, user_id, guest_user_prof
                 axios.post(event_url, postData).then(()=>{
                     console.log("4rth req");
                     console.log(postData);
+                    resolve();
                 })
             })
         })
     })
     .catch(function (error) {
         console.log(error.data);
-    })
-}
+        reject(err);
+    });
+});
+};
 
 module.exports = {sendAppUpdateEvent}

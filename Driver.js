@@ -61,34 +61,34 @@ apiController.getServerData(getMovesUrl, adminToken, function(err, moves){
                 }
                 //console.log("Exp DONE ", exp.length);
 
-            apiController.getUserData(getUsersUrl, umsToken, function(err, users){
+            apiController.getUserData(getUsersUrl, umsToken, async function(err, users){
                 if (err){
                     console.error(err);
                 }
 
                 var uid = 0;
                 console.log(users[uid]._id);
-                onBoarding.sendOnBoardingEvent(currenturl, device_id, users[uid].transition_id, users[uid]._id, ts);
-                setTimeout(function(){ alert("After 5 seconds!"); }, 10000);
+                await onBoarding.sendOnBoardingEvent(currenturl, device_id, users[uid].transition_id, users[uid]._id, ts);
+                
                 //var OnBoardingDone = true;
                 timechange = TimeCounter.IncreaseTimehr(timechange);
-                navigation.sendNavigationEvent(currenturl, device_id, users[uid]._id, users[uid].transition_id, timechange);                
-                setTimeout(function(){ alert("After 5 seconds!"); }, 10000);
+                await navigation.sendNavigationEvent(currenturl, device_id, users[uid]._id, users[uid].transition_id, timechange);                
+                
                 timechange = TimeCounter.IncreaseTimehr(timechange);
-                appUpdate.sendAppUpdateEvent(currenturl, device_id, users[uid]._id, users[uid].transition_id, timechange);
-                setTimeout(function(){ alert("After 5 seconds!"); }, 10000);
+                await appUpdate.sendAppUpdateEvent(currenturl, device_id, users[uid]._id, users[uid].transition_id, timechange);
+                
                 timechange = TimeCounter.IncreaseTimehr(timechange);
-                profile.sendProfileEvent(currenturl, device_id, users[uid]._id, users[uid].transition_id, timechange, exp[0]._id);
-                setTimeout(function(){ alert("After 5 seconds!"); }, 10000);
+                await profile.sendProfileEvent(currenturl, device_id, users[uid]._id, users[uid].transition_id, timechange, exp[0]._id);
+                
                 timechange = TimeCounter.IncreaseTimehr(timechange);
-                creation.sendCreationEvent(currenturl, device_id, users[uid]._id, users[uid].transition_id, timechange, moves[uid]._id, music[uid]._id, exp[uid]._id, scene[uid]._id);
-                setTimeout(function(){ alert("After 5 seconds!"); }, 10000);
+                await creation.sendCreationEvent(currenturl, device_id, users[uid]._id, users[uid].transition_id, timechange, moves[uid]._id, music[uid]._id, exp[uid]._id, scene[uid]._id);
+                
                 timechange = TimeCounter.IncreaseTimehr(timechange);
-                explore.sendExploreEvent(currenturl, device_id, users[uid]._id, users[uid].transition_id, timechange);
-                setTimeout(function(){ alert("After 5 seconds!"); }, 10000);
+                await explore.sendExploreEvent(currenturl, device_id, users[uid]._id, users[uid].transition_id, timechange);
+                
                 timechange = TimeCounter.IncreaseTimehr(timechange);
-                feed.sendFeedEvent(currenturl, device_id, users[uid]._id, users[uid].transition_id, timechange, moves[uid]._id, music[uid]._id, exp[uid]._id, scene[uid]._id);
-                setTimeout(function(){ alert("After 5 seconds!"); }, 10000);
+                await feed.sendFeedEvent(currenturl, device_id, users[uid]._id, users[uid].transition_id, timechange, moves[uid]._id, music[uid]._id, exp[uid]._id, scene[uid]._id);
+                
                 timechange = TimeCounter.IncreaseTimehr(timechange);
                 share.sendShareEvent(currenturl, device_id, users[uid]._id, users[uid].transition_id, timechange, moves[uid]._id, music[uid]._id, exp[uid]._id, scene[uid]._id);
             })

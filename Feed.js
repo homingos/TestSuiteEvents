@@ -8,6 +8,7 @@ const timeinc = require('./TimeIncrementer.js');
 // POST
 
 var sendFeedEvent = function(event_url, device_id, user_id, guest_user_profile_id, log_time, move_id, music_id, exp_id, scene_id){
+return new Promise((resolve, reject) => {
 var postData= {data:JSON.parse(JsonData.empty)}
 postData.data.log_id = uuid.create_UUID();
 postData.data.device_id = device_id;
@@ -156,6 +157,7 @@ axios.post(event_url, postData).then(function (response) {
                                                         axios.post(event_url, postData).then(()=>{
                                                             console.log("15 req");
                                                             console.log(postData);
+                                                            resolve();
                                                         })
                                                     })
                                                 })
@@ -173,7 +175,9 @@ axios.post(event_url, postData).then(function (response) {
 })
 .catch(function (error) {
     console.log(error.data);
-})
-}
+    reject(err);
+});
+});
+};
 
 module.exports = {sendFeedEvent}

@@ -5,6 +5,7 @@ const timeinc = require('./TimeIncrementer.js');
 //uuid()
 
 var sendExploreEvent = function(event_url, device_id, user_id, guest_user_profile_id, log_time){
+return new Promise((resolve, reject) => {
 var postData= {data:JSON.parse(JsonData.empty)}
 
 postData.data.log_id = uuid.create_UUID();
@@ -109,6 +110,7 @@ axios.post(event_url, postData).then(function (response) {
                                     axios.post(event_url, postData).then(()=>{
                                         console.log("10 req");
                                         console.log(postData);
+                                        resolve();
                                     })
                                 })
                             })
@@ -121,7 +123,9 @@ axios.post(event_url, postData).then(function (response) {
 })
 .catch(function (error) {
     console.log(error.data);
-})
-}
+    reject(err);
+});
+});
+};
 
 module.exports = {sendExploreEvent}
