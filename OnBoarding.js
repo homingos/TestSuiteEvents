@@ -99,7 +99,7 @@ axios.post(event_url, postData).then(function (response) {
                                     console.log("9th req");
                                     console.log(postData);
                                     postData.data.log_id = uuid.create_UUID();
-                                    postData.data.log_time = "2022-09-18 13:02:22.000012";
+                                    postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
                                     postData.data.ssid = uuid.create_UUID();
                                     postData.data.event_type = "CTA";
                                     postData.data.event_name = "Social Media Platform Selection";
@@ -107,7 +107,7 @@ axios.post(event_url, postData).then(function (response) {
                                         console.log("10 req");
                                         console.log(postData);
                                         postData.data.log_id = uuid.create_UUID();
-                                        postData.data.log_time = "2022-09-18 13:02:29.000012";
+                                        postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
                                         postData.data.ssid = uuid.create_UUID();
                                         postData.data.user_details.guest_user_profile_id = postData.data.user_profile_id;
                                         postData.data.user_profile_id = "b7a66a11-6ea2-4df1-a2c8-8f23ad5d4902";                                        

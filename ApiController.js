@@ -2,49 +2,79 @@ const axios = require('axios');
 const uuid = require('uuid');
 var getUsers = function(url, token){
     axios.get(url, {headers: {Authorization: token}}).then((res)=>{
-        return res.data;
+        return res.data.data;
     })
     .catch((err) => {
-        console.error(err);
+        console.error(err.data);
     });
 }
 
-var getMoves = function(url, token){
-    axios.get(url, {headers: {Authorization: token}}).then((res)=>{
-        return res.data;
+var getServerData = function(url, token, callback){
+    //console.log("GETTING  MOVES");
+    let x;
+    axios.get(url,{headers: {Authorization: token}})
+    .then((res)=>{
+        // console.log(res.data.data);
+        callback(null, res.data.data);
     })
     .catch((err) => {
-        console.error(err);
+        callback(err, null)
     });
 }
 
-var getScenes = function(url, token){
-    axios.get(url, {headers: {Authorization: token}}).then((res)=>{
-        return res.data;
+var getUserData = function(url, token, callback){
+    //console.log("GETTING  MOVES");
+    let x;
+    axios.get(url,{headers: {"api-key": token}})
+    .then((res)=>{
+        // console.log(res.data.data);
+        callback(null, res.data.data);
     })
     .catch((err) => {
-        console.error(err);
+        callback(err, null)
     });
 }
 
-var getExperiences = function(url, token){
-    axios.get(url, {headers: {Authorization: token}}).then((res)=>{
-        return res.data;
-    })
-    .catch((err) => {
-        console.error(err);
-    });
-}
+    
+// function getMoves(url, token) {
+//     return axios({
+//         url,
+//         method: 'get',
+//         timeout: 5000,
+//         headers: {Authorization: token}
+//     })
+//     .then(res => res.data.data)
+//     .catch (err => console.error(err))
+// }
 
-var getMusic = function(url, token){
-    axios.get(url, {headers: {Authorization: token}}).then((res)=>{
-        return res.data;
-    })
-    .catch((err) => {
-        console.error(err);
-    });
-}
-module.exports = {getExperiences, getUsers, getMoves, getScenes, getMusic}
+// var getScenes = function(url, token){
+//     axios.get(url, {headers: {Authorization: token}}).then((res)=>{
+//         return res.data.data;
+//     })
+//     .catch((err) => {
+//         console.error(err.data);
+//     });
+// }
+
+// var getExperiences = function(url, token){
+//     axios.get(url, {headers: {Authorization: token}}).then((res)=>{
+//         return res.data;
+//     })
+//     .catch((err) => {
+//         console.error(err.data);
+//     });
+// }
+
+// var getMusic = function(url, token){
+//     axios.get(url, {headers: {Authorization: token}}).then((res)=>{
+//         return res.data.data;
+//     })
+//     .catch((err) => {
+//         console.error(err.data);
+//     });
+// }
+// module.exports = {getMoves, getScenes, getMusic}
+module.exports = {getServerData, getUserData}
 
 
 // var getMoves = [

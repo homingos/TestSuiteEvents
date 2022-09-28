@@ -1,56 +1,77 @@
 var apiController = require('./ApiController.js');
 var appUpdate = require('./AppUpdate.js');
+var onBoarding = require('./OnBoarding.js');
+var navigation = require('./Navigation.js');
+var creation = require('./Creation.js');
+var feed = require('./Feed.js');
+var share = require('./Share.js');
+var profile = require('./Profile.js');
+var explore = require('./Explore.js');
+var nudge = require('./Nudge.js');
 
 let event_url = 'https://streams.flamapp.com/flamV2-dev-clickstream';
 var event_test_url = 'https://jsonplaceholder.typicode.com/posts';
 
 
-let getUsersUrl = "https://api.flamapp.com/flink/ums/getUsers";
-let umsToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjMWRjMGMzMy1hMmQ4LTRkMzktYWU5NC03NmM4M2Q5OTkwZTQiLCJkYXRhIjoiZGM5MDlmM2VkZGQ1YjA2ZjBkYmYyMGE0MmQyYzUwYmYyMzdiN2Q3YTIzMTdjMDE5MmE2Y2FkNGUzNTM2NmEwMDVmYTdhMzNjNjMxMjI3ZmExNzJiYzE3MGUwYmI0MDkzMzU5OGViZDdlZTUzZDlhOTAyOGNmZmEwMTdiZDgxNjk1ZDk0MTQ3NTlmOGViMjVhMTZlNjliMmJlZmMwNzk5MjJkODljMWVlMzg0Y2NiZGY4YmI3Njc2NWFhZWY3MDA3ZjFjNmYzOGE3M2Q2NGI0M2QyYTA2M2NkYTk0ZDIyOGYxODdhYjUwOTY4YmViMmY0ZTNhMmE0MTcyMjIxZjVmZDkxMDAxZGU4ZWQ3NDcyOWYyOTkxZWYwZWZkYmRmZGIyY2E5MGJjZDY1NDliMWVhNDZkNDhmYjdiMWVkODdlOTFhYmJmMzI3ZmFkMzZjNzczYmI4ODdmNzk2N2UzM2M1MTUwNGNiYzdiZWI4MWFiMTVjY2E3ZWYyMTc5YzQ0N2RmY2M1YTY4OWFhNDk0NzhmMzM1NjBjMTI1OGYyNWI3M2UwMTNmZmE2NmI5ZjViNjY0MzBjY2U0OGE0NjZmMTJlZGRmODlmMDRhNzJlOTI2NjEzZThhODQxYzAyMjg4YjI2ZWEzMDlkMDcyM2EzZTA0MWFmZWE3MGU4NzBiOWZlNDczNDVmNjgwZDRhMGRhZTEyMzViNjM2ZWVkMzA1MjA0YjliNDYzZDc4NDVkNTY0N2FlNmVkN2U3YjkzYTA5N2VmNWE2ZGUyMGZmNTQ4MGIwZGI1MjRhN2YxM2RlYjIxMTYwZjQ0ZTJiMDQ1YjAwZGI3ZmJmOGFlODllZmZhNjhlZDFhZGU0ZmM2YWJkMzBkNjFkNjQwNzVmZTMxMmZlOTI3MjQyYmZiOGZkYjg4NmNmNTZmOGNiYzYwZTc2MTVkNDIyYzA4M2U5MTU4MjkwYWE2YmYyZjkyNDhhZTFlMzM2NDA5ZGI4YmY3ZDQxNGY1YTI4Y2QxNDAzODAyZmJmZjljNzgwNDA0YjU2MWFiOTg3ODJhY2JlNzI4MmYzZjcyYjAiLCJpYXQiOjE2NjQyNjQyODgsImV4cCI6MTY5NTgyMTg4OH0.UaZUlGGyqJJRMIpgAH1pEmSFDzI3Cf1TADqrcu295n0";
-let getExperiencesUrl = "https://api.flamapp.com/flink/ums/getExperiences";
-let getMovesUrl = "https://api.flamapp.com/flink/ums/getMoves";
-let getScenesUrl = "https://api.flamapp.com/flink/ums/getScenes";
-let getMusicUrl = "https://api.flamapp.com/flink/ums/getMusic";
-let experiencesToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjMWRjMGMzMy1hMmQ4LTRkMzktYWU5NC03NmM4M2Q5OTkwZTQiLCJkYXRhIjoiZGM5MDlmM2VkZGQ1YjA2ZjBkYmYyMGE0MmQyYzUwYmYyMzdiN2Q3YTIzMTdjMDE5MmE2Y2FkNGUzNTM2NmEwMDVmYTdhMzNjNjMxMjI3ZmExNzJiYzE3MGUwYmI0MDkzMzU5OGViZDdlZTUzZDlhOTAyOGNmZmEwMTdiZDgxNjk1ZDk0MTQ3NTlmOGViMjVhMTZlNjliMmJlZmMwNzk5MjJkODljMWVlMzg0Y2NiZGY4YmI3Njc2NWFhZWY3MDA3ZjFjNmYzOGE3M2Q2NGI0M2QyYTA2M2NkYTk0ZDIyOGYxODdhYjUwOTY4YmViMmY0ZTNhMmE0MTcyMjIxZjVmZDkxMDAxZGU4ZWQ3NDcyOWYyOTkxZWYwZWZkYmRmZGIyY2E5MGJjZDY1NDliMWVhNDZkNDhmYjdiMWVkODdlOTFhYmJmMzI3ZmFkMzZjNzczYmI4ODdmNzk2N2UzM2M1MTUwNGNiYzdiZWI4MWFiMTVjY2E3ZWYyMTc5YzQ0N2RmY2M1YTY4OWFhNDk0NzhmMzM1NjBjMTI1OGYyNWI3M2UwMTNmZmE2NmI5ZjViNjY0MzBjY2U0OGE0NjZmMTJlZGRmODlmMDRhNzJlOTI2NjEzZThhODQxYzAyMjg4YjI2ZWEzMDlkMDcyM2EzZTA0MWFmZWE3MGU4NzBiOWZlNDczNDVmNjgwZDRhMGRhZTEyMzViNjM2ZWVkMzA1MjA0YjliNDYzZDc4NDVkNTY0N2FlNmVkN2U3YjkzYTA5N2VmNWE2ZGUyMGZmNTQ4MGIwZGI1MjRhN2YxM2RlYjIxMTYwZjQ0ZTJiMDQ1YjAwZGI3ZmJmOGFlODllZmZhNjhlZDFhZGU0ZmM2YWJkMzBkNjFkNjQwNzVmZTMxMmZlOTI3MjQyYmZiOGZkYjg4NmNmNTZmOGNiYzYwZTc2MTVkNDIyYzA4M2U5MTU4MjkwYWE2YmYyZjkyNDhhZTFlMzM2NDA5ZGI4YmY3ZDQxNGY1YTI4Y2QxNDAzODAyZmJmZjljNzgwNDA0YjU2MWFiOTg3ODJhY2JlNzI4MmYzZjcyYjAiLCJpYXQiOjE2NjQyNjQyODgsImV4cCI6MTY5NTgyMTg4OH0.UaZUlGGyqJJRMIpgAH1pEmSFDzI3Cf1TADqrcu295n0";
+let getUsersUrl = "https://dev.flamapp.com/thanos/v1/user-profile/admin/profiles";
+let umsToken = "4c6e5d06-0d8e-4026-9a61-fc3d75fda1b0";
 
-let users = apiController.getUsers(getUsersUrl, umsToken);
-let experiences = apiController.getExperiences(getExperiencesUrl, experiencesToken);
-let moves = apiController.getMoves(getMovesUrl, experiencesToken);
-let music = apiController.getMusic(getMusicUrl, experiencesToken);
-let scenes = apiController.getScenes(getScenesUrl, experiencesToken); 
+let getExperiencesUrl = "https://dev.homingos.com/wolverine/v1/experience/admin/all?page=0&page_size=5";
+let getMovesUrl = "https://dev.homingos.com/wolverine/v1/move/admin/all?page=0&page_size=5";
+let adminToken = "fd8f7b60-9a6c-4124-83fd-b7809fb6cf2e";
+let getScenesUrl = "https://dev.homingos.com/wolverine/v1/scene/admin/all?page=0&page_size=5";
+let getMusicUrl = "https://dev.homingos.com/wolverine/v1/music/admin/all?page=0&page_size=5";
+// let users = apiController.getUsers(getUsersUrl, umsToken);
+// let experiences = apiController.getExperiences(getExperiencesUrl, experiencesToken);
+//console.log("GETTING DATA");
 
-console.log(users, experiences, moves, music, scenes);
-
-let ts = "2022-09-18 17:35:45.004567";
+let ts = "2022-09-02 17:35:45.004567";
 
 function get_correct_url(){
     return event_test_url;
 }
+apiController.getServerData(getMovesUrl, adminToken, function(err, moves){
+    if (err){
+        console.error(err);
+    }
+    currenturl = get_correct_url();
+    //console.log("MOVES DONE ", moves.length);
+    //console.log(moves);
+    apiController.getServerData(getMusicUrl, adminToken, function(err, music){
+        if (err){
+            console.error(err);
+        }
+        //console.log("MUSIC DONE ", music.length);
+        
 
-let user = getUser();
-//sendOnBoardingEvent(user);
-//sendAppUpdateEvent(user);
+        apiController.getServerData(getScenesUrl, adminToken, function(err, scene){
+            if (err){
+                console.error(err);
+            }
+            //console.log("Scene DONE ", scene.length);
 
-//sendOnBoardingEvent();
+            apiController.getServerData(getExperiencesUrl, adminToken, function(err, exp){
+                if (err){
+                    console.error(err);
+                }
+                //console.log("Exp DONE ", exp.length);
 
-function getUser(){
-    let user = users[Math.floor(Math.random()*users.length)];
-    return user;
-}
+            apiController.getUserData(getUsersUrl, umsToken, function(err, users){
+                if (err){
+                    console.error(err);
+                }
+                console.log("Users ", users[0]);
+                //console.log("Scene ", scene[0]);
+                //console.log("Music", music[0]);
+                //console.log("Move", moves[0]);
+                //console.log("experience", exp[0]);
+                
+                onBoarding.sendOnBoardingEvent(currenturl, users[0], users[0].transition_id, ts);
+                
+                })
+            })
+        })
 
-function sendOnBoardingEvent(user, ts){
-    url = get_correct_url();
-    appUpdate.sendOnBoardingEvent(url, user.user_profile_id, user.user_guest_profile_id, ts);
-    
-}
-
-
-function sendAppUpdateEvent(user, ts){
-    url = get_correct_url();
-    let user = users[Math.floor(Math.random()*users.length)];
-    appUpdate.sendAppUpdateEvent(url, user.user_profile_id, user.user_guest_profile_id, ts);
-}
-
-function sendNudgeEvent(){
-
-}
+    })
+  
+})

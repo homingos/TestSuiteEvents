@@ -291,3 +291,49 @@ axios.post(testurl, postData)
   })
   
 
+//console.log(moves)
+// console.log(moves);
+// .then(res => console.log(res.data))
+//let music = apiController.getMusic(getMusicUrl, adminToken);
+//let scenes = apiController.getScenes(getScenesUrl, adminToken); 
+//var movesdata;
+//const [resultArray, setResultArray] = useState([]);
+
+// moves.then((res)=>{
+//     let list = {};
+//     //console.log(res);
+//     list = res.data;
+//     return list;
+// });
+
+// console.log(list);
+// console.log(music);
+// console.log(scenes);
+
+//var user = getUser();
+//sendOnBoardingEvent(user);
+//sendAppUpdateEvent(user);
+
+//sendOnBoardingEvent();
+
+// function getUser(){
+//     var user = users[Math.floor(Math.random()*users.length)];
+//     return user;
+// }
+
+// function sendOnBoardingEvent(user, ts){
+//     url = get_correct_url();
+//     appUpdate.sendOnBoardingEvent(url, user.user_profile_id, user.user_guest_profile_id, ts);
+    
+// }
+
+
+// function sendAppUpdateEvent(user, ts){
+//     url = get_correct_url();
+//     var user = users[Math.floor(Math.random()*users.length)];
+//     appUpdate.sendAppUpdateEvent(url, user.user_profile_id, user.user_guest_profile_id, ts);
+// }
+
+// function sendNudgeEvent(){
+
+// }

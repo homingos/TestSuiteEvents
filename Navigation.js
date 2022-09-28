@@ -4,7 +4,6 @@ const uuid = require('./GetUUID.js');
 const timeinc = require('./TimeIncrementer.js');
 //uuid()
 
-
 // POST
 
 var sendNavigationEvent = function(event_url, user_id, guest_user_profile_id, log_time){
