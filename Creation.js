@@ -5,10 +5,10 @@ const timeinc = require('./TimeIncrementer.js');
 
 //uuid()
 
-var sendCreationEvent = function(event_url, user_id, guest_user_profile_id, log_time, move_id, music_id, exp_id, scene_id){
+var sendCreationEvent = function(event_url, device_id, user_id, guest_user_profile_id, log_time, move_id, music_id, exp_id, scene_id){
 var postData= {data:JSON.parse(JsonData.empty)}
 postData.data.log_id = uuid.create_UUID();
-postData.data.device_id = uuid.create_UUID();
+postData.data.device_id = device_id;
 postData.data.user_profile_id = user_id;
 postData.data.country = "IN";
 postData.data.ip = "168.212.226.204";

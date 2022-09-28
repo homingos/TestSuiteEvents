@@ -1,5 +1,5 @@
 const axios = require('axios');
-const uuid = require('uuid');
+
 var getUsers = function(url, token){
     axios.get(url, {headers: {Authorization: token}}).then((res)=>{
         return res.data.data;

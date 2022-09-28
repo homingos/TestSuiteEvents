@@ -4,10 +4,10 @@ const uuid = require('uuid');
 const timeinc = require('./TimeIncrementer.js');
 //uuid()
 
-var sendNudgeEvent = function(event_url, user_id, guest_user_profile_id, log_time){
+var sendNudgeEvent = function(event_url, device_id, user_id, guest_user_profile_id, log_time){
 var postData= {data:JSON.parse(JsonData.empty)}
 postData.data.log_id = uuid.create_UUID();
-postData.data.device_id = uuid.create_UUID();
+postData.data.device_id = device_id;
 postData.data.user_profile_id = user_id;
 //var upid = postData.data.user_profile_id;
 postData.data.country = "IN";

@@ -6,10 +6,10 @@ const timeinc = require('./TimeIncrementer.js');
 
 
 // POST
-var sendProfileEvent = function(event_url, user_id, guest_user_profile_id, log_time, exp_id){
+var sendProfileEvent = function(event_url, device_id, user_id, guest_user_profile_id, log_time, exp_id){
 var postData= {data:JSON.parse(JsonData.empty)}
 postData.data.log_id = uuid.create_UUID();
-postData.data.device_id = uuid.create_UUID();
+postData.data.device_id = device_id;
 postData.data.country = "IN";
 postData.data.ip = "168.212.226.204";
 postData.data.log_time = log_time;
@@ -132,13 +132,13 @@ axios.post(event_url, postData).then(function (response) {
                                                 postData.data.ssid = uuid.create_UUID();
                                                 postData.data.event_type = "CTA";
                                                 postData.data.event_name = "Confirm Name Updation";
-                                                axios.post(event_url, postData).then(()=> {
-                                                    console.log("13 req");
-                                                    console.log(postData);
-                                                    postData.data.log_id = uuid.create_UUID();
-                                                    postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
-                                                    postData.data.ssid = uuid.create_UUID();
-                                                    postData.data.event_name = "Logout";
+                                                // axios.post(event_url, postData).then(()=> {
+                                                //     console.log("13 req");
+                                                //     console.log(postData);
+                                                //     postData.data.log_id = uuid.create_UUID();
+                                                //     postData.data.log_time = timeinc.IncreaseTime(postData.data.log_time);
+                                                //     postData.data.ssid = uuid.create_UUID();
+                                                //     postData.data.event_name = "Logout";
                                                     axios.post(event_url, postData).then(()=> {
                                                         console.log("14 req");
                                                         console.log(postData);
@@ -149,7 +149,7 @@ axios.post(event_url, postData).then(function (response) {
                                                         axios.post(event_url, postData).then(()=> {
                                                             console.log("15 req");
                                                             console.log(postData);
-                                                        })
+                                                        // })
                                                     })
                                                 })
                                             })
